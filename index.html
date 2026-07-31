@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haroni Online Market</title>
+    <meta name="description" content="Local eCommerce website in Haroni, Sodo, Wolaita Zone, Ethiopia.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header>
+        <div class="container">
+            <h1>Haroni Online Market</h1>
+            <p>Your trusted local marketplace near Ajip, Haroni, Sodo City, Wolaita Zone, Ethiopia.</p>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#categories">Categories</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- ==================== MAIN ==================== -->
+    <main>
+
+        <!-- HERO -->
+        <section class="hero">
+            <h2>Shop Local Products</h2>
+            <p>Buy quality products from trusted sellers in Haroni Market.</p>
+            <button type="button" onclick="window.location.href='products.html'">Shop Now</button>
+        </section>
+
+
+        <!-- CATEGORIES -->
+        <section id="categories">
+            <h2>Categories</h2>
+
+            <div class="categories">
+                <article onclick="window.location.href='products.html?category=Phones'">
+                    <h3>📱 Phones</h3>
+                    <p>Smartphones and accessories.</p>
+                </article>
+
+                <article onclick="window.location.href='products.html?category=Clothing'">
+                    <h3>👕 Clothing</h3>
+                    <p>Fashion for everyone.</p>
+                </article>
+
+                <article onclick="window.location.href='products.html?category=Shoes'">
+                    <h3>👟 Shoes</h3>
+                    <p>Sports and casual shoes.</p>
+                </article>
+
+                <article onclick="window.location.href='products.html?category=Cosmetics'">
+                    <h3>🧴 Cosmetics</h3>
+                    <p>Beauty products.</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- FEATURED PRODUCTS (preview only — full list lives on products.html) -->
+        <section id="products">
+            <h2>Featured Products</h2>
+
+            <div class="products">
+
+                <article class="product-card" data-category="Phones">
+                    <figure class="product-image">
+                        <img src="images/smart_phone.png" alt="Tecno Spark 30 smartphone">
+                    </figure>
+                    <div class="product-info">
+                        <h3>Tecno Spark 30</h3>
+                        <p class="price"><strong>13,500 ETB</strong></p>
+                        <p class="seller">Seller: Haroni Electronics</p>
+                    </div>
+                    <button type="button">Add to Cart</button>
+                </article>
+
+                <article class="product-card" data-category="Shoes">
+                    <figure class="product-image">
+                        <img src="images/run_shoes.png" alt="Running Shoes">
+                    </figure>
+                    <div class="product-info">
+                        <h3>Running Shoes</h3>
+                        <p class="price"><strong>2,450 ETB</strong></p>
+                        <p class="seller">Seller: Haroni Shoe Store</p>
+                    </div>
+                    <button type="button">Add to Cart</button>
+                </article>
+
+                <article class="product-card" data-category="Clothing">
+                    <figure class="product-image">
+                        <img src="images/dress.png" alt="Women's Dress">
+                    </figure>
+                    <div class="product-info">
+                        <h3>Women's Dress</h3>
+                        <p class="price"><strong>1,850 ETB</strong></p>
+                        <p class="seller">Seller: Haroni Fashion</p>
+                    </div>
+                    <button type="button">Add to Cart</button>
+                </article>
+
+                <article class="product-card" data-category="Cosmetics">
+                    <figure class="product-image">
+                        <img src="images/face_cream.png" alt="Face Cream">
+                    </figure>
+                    <div class="product-info">
+                        <h3>Face Cream</h3>
+                        <p class="price"><strong>650 ETB</strong></p>
+                        <p class="seller">Seller: Haroni Cosmetics</p>
+                    </div>
+                    <button type="button">Add to Cart</button>
+                </article>
+
+            </div>
+
+            <p class="section-footer">
+                <a href="products.html">View All Products →</a>
+            </p>
+        </section>
+
+
+        <!-- ASIDE -->
+        <aside>
+            <h3>Quick Information</h3>
+            <ul>
+                <li>Currency: ETB</li>
+                <li>Delivery: Pickup</li>
+                <li>Location: Haroni, Sodo</li>
+            </ul>
+        </aside>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <address>
+            <section>
+                <h2>Our Location</h2>
+                <p>Near Ajip, Haroni, Sodo City, Wolaita Zone, Ethiopia.</p>
+                <a href="https://maps.app.goo.gl/WT2fed4xCc2ngQmaA" target="_blank" rel="noopener noreferrer">
+                    📍 Open in Google Maps
+                </a>
+            </section>
+
+            <p>Phone: 046551****</p>
+            <p>Email: haron...@gmail.com</p>
+        </address>
+
+        <small>© 2026 Haroni Online Market</small>
+    </footer>
+
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script src="js/cart.js"></script>
+    <script src="js/nav.js"></script>
+
+</body>
+</html>

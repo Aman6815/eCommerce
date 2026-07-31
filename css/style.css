@@ -58,35 +58,25 @@ header p {
 
 nav ul {
     list-style: none;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 25px;
-
     flex-wrap: wrap;
-
     margin-top: 15px;
 }
 
 nav a {
     color: #ffffff;
-
     text-decoration: none;
-
     font-weight: bold;
-
     padding: 6px 10px;
-
     border-radius: 4px;
-
     transition: background 0.3s ease;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
     background: #1b5e20;
 }
 
@@ -98,7 +88,6 @@ nav a:hover {
 main {
     width: 90%;
     max-width: 1100px;
-
     margin: 30px auto;
 }
 
@@ -109,20 +98,20 @@ main {
 
 section {
     background: #ffffff;
-
     padding: 25px;
-
     margin-bottom: 25px;
-
     border-radius: 8px;
-
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 section h2 {
     color: #2e7d32;
-
     margin-bottom: 18px;
+}
+
+.section-footer {
+    text-align: center;
+    margin-top: 20px;
 }
 
 
@@ -131,7 +120,17 @@ section h2 {
 ================================================== */
 
 .hero {
+    text-align: center;
     padding: 50px 25px;
+}
+
+.hero h2 {
+    font-size: 2rem;
+}
+
+.hero p {
+    max-width: 650px;
+    margin: 0 auto 20px;
 }
 
 .hero button {
@@ -145,34 +144,23 @@ section h2 {
 
 .categories {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
 .categories article {
     background: #f8faf8;
-
     padding: 20px;
-
     border: 1px solid #e0e0e0;
-
     border-radius: 8px;
-
     text-align: center;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .categories article:hover {
     transform: translateY(-3px);
-
-    box-shadow:
-        0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .categories h3 {
@@ -181,139 +169,80 @@ section h2 {
 
 
 /* ==================================================
-   FEATURED PRODUCTS
+   FEATURED / PRODUCTS
 ================================================== */
 
 .products {
     display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-
     align-items: stretch;
 }
 
-
-/* Product Card */
-
 .product-card {
     border: 1px solid #dddddd;
-
     border-radius: 8px;
-
     padding: 15px;
-
     text-align: center;
-
     background: #ffffff;
-
     display: flex;
-
     flex-direction: column;
-
     min-width: 0;
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-4px);
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
-
-/* Product Image Area */
 
 .product-image {
     width: 100%;
-
     height: 200px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     background: #f8faf8;
-
     border-radius: 6px;
-
     margin-bottom: 15px;
-
     overflow: hidden;
 }
 
-
-/* Product Image */
-
 .product-image img {
     width: 100%;
-
     height: 100%;
-
     object-fit: contain;
-
     padding: 10px;
 }
 
-
-/* Product Information */
-
 .product-info {
     flex-grow: 1;
-
     display: flex;
-
     flex-direction: column;
 }
 
 .product-info h3 {
     min-height: 50px;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     margin-bottom: 10px;
 }
 
-
-/* Product Price */
-
 .price {
     color: #2e7d32;
-
     font-size: 1.1rem;
-
     margin-bottom: 8px;
 }
 
-
-/* Seller */
-
 .seller {
     color: #666666;
-
     font-size: 0.9rem;
-
     margin-bottom: 15px;
 }
 
-
-/* Product Button */
-
 .product-card button {
     width: 100%;
-
     margin-top: auto;
 }
 
@@ -324,7 +253,6 @@ section h2 {
 
 label {
     font-weight: bold;
-
     margin-bottom: 5px;
 }
 
@@ -332,17 +260,11 @@ input,
 select,
 textarea {
     width: 100%;
-
     padding: 10px;
-
     font-family: inherit;
-
     font-size: 1rem;
-
     border: 1px solid #cccccc;
-
     border-radius: 5px;
-
     outline: none;
 }
 
@@ -350,13 +272,42 @@ input:focus,
 select:focus,
 textarea:focus {
     border-color: #2e7d32;
-
-    box-shadow:
-        0 0 0 2px rgba(46, 125, 50, 0.15);
+    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
 }
 
 textarea {
     resize: vertical;
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.search-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-form button {
+    height: 42px;
+}
+
+.contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.contact-form button {
+    width: 100%;
 }
 
 
@@ -366,24 +317,14 @@ textarea {
 
 button {
     background: #2e7d32;
-
     color: #ffffff;
-
     border: none;
-
     padding: 10px 18px;
-
     font-family: inherit;
-
     font-size: 1rem;
-
     border-radius: 5px;
-
     cursor: pointer;
-
-    transition:
-        background 0.3s ease,
-        transform 0.2s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
@@ -394,6 +335,11 @@ button:active {
     transform: scale(0.98);
 }
 
+button:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
 
 /* ==================================================
    FAQ
@@ -401,17 +347,13 @@ button:active {
 
 details {
     margin: 12px 0;
-
     padding: 12px;
-
     border-bottom: 1px solid #eeeeee;
 }
 
 summary {
     cursor: pointer;
-
     font-weight: bold;
-
     color: #2e7d32;
 }
 
@@ -422,17 +364,13 @@ summary {
 
 blockquote {
     border-left: 4px solid #2e7d32;
-
     padding-left: 15px;
-
     font-style: italic;
-
     margin-bottom: 10px;
 }
 
 .rating {
     color: #2e7d32;
-
     font-size: 1.2rem;
 }
 
@@ -443,13 +381,9 @@ blockquote {
 
 aside {
     background: #e8f5e9;
-
     padding: 20px;
-
     border-left: 5px solid #2e7d32;
-
     margin-bottom: 25px;
-
     border-radius: 5px;
 }
 
@@ -468,11 +402,8 @@ aside ul {
 
 footer {
     background: #2e7d32;
-
     color: #ffffff;
-
     text-align: center;
-
     padding: 25px;
 }
 
@@ -482,11 +413,8 @@ footer address {
 
 footer section {
     background: transparent;
-
     box-shadow: none;
-
     padding: 0;
-
     margin-bottom: 15px;
 }
 
@@ -496,9 +424,7 @@ footer section h2 {
 
 footer a {
     color: #ffffff;
-
     font-weight: bold;
-
     text-decoration: none;
 }
 
@@ -508,8 +434,47 @@ footer a:hover {
 
 footer small {
     display: block;
-
     margin-top: 15px;
+}
+
+
+/* ==================================================
+   CART BADGE / TOAST (added by js/cart.js)
+================================================== */
+
+#cart-badge {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #1b5e20;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #2e7d32;
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
 }
 
 
@@ -518,17 +483,13 @@ footer small {
 ================================================== */
 
 @media (max-width: 900px) {
-
     .categories {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .products {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 
@@ -537,76 +498,60 @@ footer small {
 ================================================== */
 
 @media (max-width: 768px) {
-
     main,
     .container {
         width: 92%;
     }
 
-
     header {
         padding: 20px 0;
     }
-
 
     header h1 {
         font-size: 1.7rem;
     }
 
-
     nav ul {
         flex-direction: column;
-
         gap: 8px;
     }
 
-
     nav a {
         display: block;
-
         width: 100%;
     }
-
 
     section {
         padding: 20px;
     }
 
-
     .search-form {
         grid-template-columns: 1fr;
     }
-
 
     .search-form button {
         width: 100%;
     }
 
-
     .categories {
         grid-template-columns: 1fr;
     }
-
 
     .products {
         grid-template-columns: 1fr;
     }
 
-
     .product-image {
         height: 220px;
     }
-
 
     .hero {
         padding: 35px 20px;
     }
 
-
     .hero h2 {
         font-size: 1.6rem;
     }
-
 }
 
 
@@ -615,20 +560,16 @@ footer small {
 ================================================== */
 
 @media (max-width: 400px) {
-
     main,
     .container {
         width: 94%;
     }
 
-
     section {
         padding: 15px;
     }
 
-
     .product-image {
         height: 200px;
     }
-
 }
