@@ -1,4 +1,43 @@
 /* ==================================================
+   DESIGN TOKENS
+================================================== */
+
+:root {
+    /* Color */
+    --ink: #16241C;
+    --ink-soft: #2A3B30;
+    --bg: #F7F9F5;
+    --surface: #FFFFFF;
+    --primary: #1F7A46;
+    --primary-dark: #16512F;
+    --accent: #E2A63B;
+    --accent-dark: #C6871E;
+    --signal: #D6432E;
+    --text: #16241C;
+    --text-muted: #5B6B61;
+    --border: #E3E8E1;
+
+    /* Type */
+    --font-display: 'Sora', 'Segoe UI', sans-serif;
+    --font-body: 'Inter', 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+    /* Shape */
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 2px 10px rgba(22, 36, 28, 0.07);
+    --shadow-lift: 0 10px 24px rgba(22, 36, 28, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==================================================
    RESET
 ================================================== */
 
@@ -14,10 +53,25 @@
 ================================================== */
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f7f4;
-    color: #333;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
     line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+}
+
+a {
+    color: var(--primary);
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
 }
 
 
@@ -37,17 +91,22 @@ body {
 ================================================== */
 
 header {
-    background: #2e7d32;
+    background: var(--ink);
     color: #ffffff;
     text-align: center;
-    padding: 25px 0;
+    padding: 28px 0;
 }
 
 header h1 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.8rem;
     margin-bottom: 8px;
 }
 
 header p {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.95rem;
     margin-bottom: 15px;
 }
 
@@ -61,23 +120,31 @@ nav ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 25px;
+    gap: 8px;
     flex-wrap: wrap;
     margin-top: 15px;
 }
 
 nav a {
-    color: #ffffff;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
-    font-weight: bold;
-    padding: 6px 10px;
-    border-radius: 4px;
-    transition: background 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
-nav a:hover,
+nav a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
 nav a.active {
-    background: #1b5e20;
+    background: var(--accent);
+    color: var(--ink);
+    border-color: var(--accent);
 }
 
 
@@ -97,21 +164,91 @@ main {
 ================================================== */
 
 section {
-    background: #ffffff;
-    padding: 25px;
+    background: var(--surface);
+    padding: 28px;
     margin-bottom: 25px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
 }
 
 section h2 {
-    color: #2e7d32;
+    font-size: 1.4rem;
     margin-bottom: 18px;
 }
 
 .section-footer {
     text-align: center;
     margin-top: 20px;
+}
+
+.section-footer a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.section-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==================================================
+   BUTTONS
+================================================== */
+
+.btn,
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    padding: 11px 20px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn:hover,
+button:hover {
+    background: var(--primary-dark);
+}
+
+button:active,
+.btn:active {
+    transform: scale(0.98);
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: default;
+}
+
+/* Commerce actions (adding to cart) get the amber accent —
+   deliberately distinct from navigation actions. */
+.product-card button {
+    background: var(--accent);
+    color: var(--ink);
+}
+
+.product-card button:hover {
+    background: var(--accent-dark);
+}
+
+.hero .btn {
+    background: var(--accent);
+    color: var(--ink);
+    font-size: 1rem;
+    padding: 13px 26px;
+}
+
+.hero .btn:hover {
+    background: var(--accent-dark);
 }
 
 
@@ -121,20 +258,23 @@ section h2 {
 
 .hero {
     text-align: center;
-    padding: 50px 25px;
+    padding: 56px 25px;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(31, 122, 70, 0.07), transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(226, 166, 59, 0.10), transparent 40%);
 }
 
 .hero h2 {
-    font-size: 2rem;
+    font-size: 2.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
 }
 
 .hero p {
-    max-width: 650px;
-    margin: 0 auto 20px;
-}
-
-.hero button {
-    margin-top: 10px;
+    max-width: 620px;
+    color: var(--text-muted);
+    margin: 0 auto 22px;
+    font-size: 1.05rem;
 }
 
 
@@ -145,26 +285,37 @@ section h2 {
 .categories {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 18px;
 }
 
-.categories article {
-    background: #f8faf8;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+.category-card {
+    display: block;
+    background: var(--bg);
+    padding: 22px 18px;
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--primary);
+    border-radius: var(--radius);
     text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.categories article:hover {
+.category-card:hover,
+.category-card:focus-visible {
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lift);
+    border-top-color: var(--accent);
 }
 
-.categories h3 {
-    margin-bottom: 8px;
+.category-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.category-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 
@@ -180,20 +331,20 @@ section h2 {
 }
 
 .product-card {
-    border: 1px solid #dddddd;
-    border-radius: 8px;
-    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
     text-align: center;
-    background: #ffffff;
+    background: var(--surface);
     display: flex;
     flex-direction: column;
     min-width: 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-lift);
 }
 
 .product-image {
@@ -202,8 +353,8 @@ section h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #f8faf8;
-    border-radius: 6px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
     margin-bottom: 15px;
     overflow: hidden;
 }
@@ -222,22 +373,36 @@ section h2 {
 }
 
 .product-info h3 {
-    min-height: 50px;
+    font-size: 1.02rem;
+    min-height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
 }
 
+/* Signature element: price rendered like a physical market tag */
 .price {
-    color: #2e7d32;
-    font-size: 1.1rem;
-    margin-bottom: 8px;
+    display: inline-flex;
+    align-self: center;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--primary-dark);
+    background: #EAF4EC;
+    border: 1px dashed var(--primary);
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    margin: 0 auto 10px;
+    transform: rotate(-1deg);
 }
 
 .seller {
-    color: #666666;
-    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 500;
     margin-bottom: 15px;
 }
 
@@ -252,27 +417,30 @@ section h2 {
 ================================================== */
 
 label {
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.9rem;
     margin-bottom: 5px;
+    display: inline-block;
 }
 
 input,
 select,
 textarea {
     width: 100%;
-    padding: 10px;
+    padding: 10px 12px;
     font-family: inherit;
     font-size: 1rem;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     outline: none;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-    border-color: #2e7d32;
-    box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(31, 122, 70, 0.12);
 }
 
 textarea {
@@ -292,7 +460,7 @@ textarea {
 }
 
 .search-form button {
-    height: 42px;
+    height: 43px;
 }
 
 .contact-form {
@@ -312,49 +480,28 @@ textarea {
 
 
 /* ==================================================
-   BUTTONS
-================================================== */
-
-button {
-    background: #2e7d32;
-    color: #ffffff;
-    border: none;
-    padding: 10px 18px;
-    font-family: inherit;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background: #1b5e20;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-button:disabled {
-    opacity: 0.7;
-    cursor: default;
-}
-
-
-/* ==================================================
    FAQ
 ================================================== */
 
 details {
     margin: 12px 0;
-    padding: 12px;
-    border-bottom: 1px solid #eeeeee;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
 }
 
 summary {
     cursor: pointer;
-    font-weight: bold;
-    color: #2e7d32;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+summary::marker {
+    color: var(--primary);
+}
+
+details p {
+    color: var(--text-muted);
+    margin-top: 8px;
 }
 
 
@@ -363,14 +510,15 @@ summary {
 ================================================== */
 
 blockquote {
-    border-left: 4px solid #2e7d32;
+    border-left: 4px solid var(--accent);
     padding-left: 15px;
     font-style: italic;
+    color: var(--ink-soft);
     margin-bottom: 10px;
 }
 
 .rating {
-    color: #2e7d32;
+    color: var(--accent-dark);
     font-size: 1.2rem;
 }
 
@@ -380,19 +528,21 @@ blockquote {
 ================================================== */
 
 aside {
-    background: #e8f5e9;
-    padding: 20px;
-    border-left: 5px solid #2e7d32;
+    background: #EAF4EC;
+    padding: 20px 22px;
+    border-left: 5px solid var(--primary);
     margin-bottom: 25px;
-    border-radius: 5px;
+    border-radius: var(--radius-sm);
 }
 
 aside h3 {
+    font-size: 1.05rem;
     margin-bottom: 10px;
 }
 
 aside ul {
     padding-left: 20px;
+    color: var(--ink-soft);
 }
 
 
@@ -401,10 +551,10 @@ aside ul {
 ================================================== */
 
 footer {
-    background: #2e7d32;
-    color: #ffffff;
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.85);
     text-align: center;
-    padding: 25px;
+    padding: 28px;
 }
 
 footer address {
@@ -414,17 +564,19 @@ footer address {
 footer section {
     background: transparent;
     box-shadow: none;
+    border: none;
     padding: 0;
     margin-bottom: 15px;
 }
 
 footer section h2 {
     color: #ffffff;
+    font-size: 1.15rem;
 }
 
 footer a {
-    color: #ffffff;
-    font-weight: bold;
+    color: var(--accent);
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -435,24 +587,26 @@ footer a:hover {
 footer small {
     display: block;
     margin-top: 15px;
+    color: rgba(255, 255, 255, 0.5);
 }
 
 
 /* ==================================================
-   CART BADGE / TOAST (added by js/cart.js)
+   CART BADGE / TOAST (targeted by js/cart.js)
 ================================================== */
 
 #cart-badge {
     position: fixed;
     top: 15px;
     right: 15px;
-    background: #1b5e20;
-    color: #fff;
+    background: var(--accent);
+    color: var(--ink);
     padding: 8px 14px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: 0.82rem;
+    box-shadow: var(--shadow-lift);
     z-index: 1000;
 }
 
@@ -461,12 +615,12 @@ footer small {
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%) translateY(20px);
-    background: #2e7d32;
+    background: var(--ink);
     color: #fff;
     padding: 12px 22px;
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
     font-size: 0.95rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lift);
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -504,21 +658,22 @@ footer small {
     }
 
     header {
-        padding: 20px 0;
+        padding: 22px 0;
     }
 
     header h1 {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     nav ul {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
 
     nav a {
         display: block;
         width: 100%;
+        border-radius: var(--radius-sm);
     }
 
     section {
@@ -546,7 +701,7 @@ footer small {
     }
 
     .hero {
-        padding: 35px 20px;
+        padding: 40px 20px;
     }
 
     .hero h2 {
