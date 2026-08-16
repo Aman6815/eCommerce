@@ -2,6 +2,11 @@
    CART.JS
    Shared on every page. Persists cart using localStorage
    so it survives navigation between pages.
+
+   Note: "Add to Cart" click handling now lives in
+   products.js (wireAddToCart), since product cards are
+   rendered dynamically from the API. This file just owns
+   the cart data itself and the badge/toast UI.
 ================================================== */
 
 const CART_KEY = 'haroniCart';
@@ -10,24 +15,49 @@ const CART_KEY = 'haroniCart';
 
 function getCart() {
     const data = localStorage.getItem(CART_KEY);
-    return data ? JSON.parse(data) : [];
+    if (!data) return [];
+
+    try {
+        const cart = JSON.parse(data);
+        if (!Array.isArray(cart)) return [];
+
+        // Normalize older cart entries that predate quantity/productId
+        // fields, so a stale localStorage cart can't produce NaN totals.
+        return cart
+            .filter((item) => item && typeof item.price === 'number')
+            .map((item) => ({
+                productId: item.productId ?? null,
+                name: item.name ?? 'Product',
+                price: item.price,
+                quantity: Number.isFinite(item.quantity) ? item.quantity : 1,
+            }));
+    } catch {
+        return [];
+    }
 }
 
 function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
-function addItemToCart(name, price) {
+function addItemToCart(productId, name, price) {
     const cart = getCart();
-    cart.push({ name, price });
+    const existing = cart.find((item) => item.productId === productId);
+
+    if (existing) {
+        existing.quantity += 1;
+    } else {
+        cart.push({ productId, name, price, quantity: 1 });
+    }
+
     saveCart(cart);
     updateCartBadge();
 }
 
 function getCartTotals() {
     const cart = getCart();
-    const count = cart.length;
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     return { count, total };
 }
 
@@ -62,37 +92,4 @@ function showToast(message) {
     }, 2200);
 }
 
-/* ---------- Wire up all "Add to Cart" buttons on this page ---------- */
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartBadge();
-
-    const productCards = document.querySelectorAll('.product-card');
-
-    productCards.forEach(card => {
-        const button = card.querySelector('button');
-        const nameEl = card.querySelector('.product-info h3');
-        const priceEl = card.querySelector('.price strong');
-
-        if (!button || !priceEl) return;
-
-        button.addEventListener('click', () => {
-            const name = nameEl ? nameEl.textContent.trim() : 'Product';
-            const priceNumber = parseFloat(
-                priceEl.textContent.replace(/[^\d.]/g, '')
-            ) || 0;
-
-            addItemToCart(name, priceNumber);
-            showToast(`✅ ${name} added to cart`);
-
-            const originalText = button.textContent;
-            button.textContent = 'Added ✓';
-            button.disabled = true;
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.disabled = false;
-            }, 1000);
-        });
-    });
-});
+document.addEventListener('DOMContentLoaded', updateCartBadge);

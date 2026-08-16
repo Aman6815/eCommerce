@@ -380,6 +380,19 @@ button:disabled {
     padding: 10px;
 }
 
+.no-image {
+    font-size: 2.4rem;
+    opacity: 0.5;
+}
+
+.loading-text,
+.empty-text {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px;
+}
+
 .product-info {
     flex-grow: 1;
     display: flex;
