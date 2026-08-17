@@ -61,14 +61,42 @@ function getCartTotals() {
     return { count, total };
 }
 
+/* ---------- Cart mutation helpers (used by cart.html) ---------- */
+
+function updateItemQuantity(productId, delta) {
+    const cart = getCart();
+    const item = cart.find((i) => String(i.productId) === String(productId));
+    if (!item) return;
+
+    item.quantity += delta;
+    const updated = item.quantity > 0
+        ? cart
+        : cart.filter((i) => String(i.productId) !== String(productId));
+
+    saveCart(updated);
+    updateCartBadge();
+}
+
+function removeItem(productId) {
+    const cart = getCart().filter((i) => String(i.productId) !== String(productId));
+    saveCart(cart);
+    updateCartBadge();
+}
+
+function clearCart() {
+    saveCart([]);
+    updateCartBadge();
+}
+
 /* ---------- Cart badge (top-right, on every page) ---------- */
 
 function updateCartBadge() {
     let badge = document.getElementById('cart-badge');
 
     if (!badge) {
-        badge = document.createElement('div');
+        badge = document.createElement('a');
         badge.id = 'cart-badge';
+        badge.href = 'cart.html';
         document.body.appendChild(badge);
     }
 

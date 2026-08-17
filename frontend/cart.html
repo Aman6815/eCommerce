@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products | Haroni Online Market</title>
-    <meta name="description" content="Browse all products available on Haroni Online Market.">
+    <title>Your Cart | Haroni Online Market</title>
+    <meta name="description" content="Review your cart and checkout on Haroni Online Market.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
@@ -38,38 +38,18 @@
     <!-- ==================== MAIN ==================== -->
     <main>
 
-        <!-- SEARCH -->
-        <section>
-            <h2>Search Products</h2>
+        <!-- CART -->
+        <section id="cart">
+            <h2>Your Cart</h2>
 
-            <form class="search-form">
-                <div class="form-group">
-                    <label for="search">Product</label>
-                    <input type="search" id="search" placeholder="Search products...">
-                </div>
+            <div id="cart-items">
+                <p class="loading-text">Loading cart...</p>
+            </div>
 
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category">
-                        <option>All</option>
-                        <option>Phones</option>
-                        <option>Clothing</option>
-                        <option>Shoes</option>
-                        <option>Cosmetics</option>
-                    </select>
-                </div>
-
-                <button type="submit">Search</button>
-            </form>
-        </section>
-
-
-        <!-- ALL PRODUCTS (loaded from the API — see js/search.js) -->
-        <section id="products">
-            <h2>All Products</h2>
-
-            <div class="products">
-                <p class="loading-text">Loading products...</p>
+            <div id="cart-summary" class="cart-summary" style="display:none;">
+                <p>Items: <span class="cart-count"></span></p>
+                <p>Total: <span class="cart-total"></span></p>
+                <button type="button" id="checkout-btn">Checkout</button>
             </div>
         </section>
 
@@ -100,8 +80,7 @@
     <script src="js/auth.js"></script>
     <script src="js/api.js"></script>
     <script src="js/nav.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/search.js"></script>
+    <script src="js/cart-page.js"></script>
 
 </body>
 </html>
