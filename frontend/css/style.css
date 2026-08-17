@@ -478,6 +478,56 @@ button:disabled {
     margin-top: 16px;
 }
 
+
+/* ==================================================
+   SELLER DASHBOARD
+================================================== */
+
+.form-group-inline label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.form-actions button {
+    flex: 1;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+    background: var(--bg);
+}
+
+.btn-edit {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.btn-edit:hover {
+    background: var(--primary-dark);
+}
+
+.status-inactive {
+    color: var(--signal);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#guard-message:empty {
+    display: none;
+}
+
 .product-info {
     flex-grow: 1;
     display: flex;

@@ -43,6 +43,14 @@ function renderAuthNav() {
         const greeting = document.createElement('span');
         greeting.className = 'nav-user';
         greeting.textContent = `Hi, ${user.name.split(' ')[0]} (${user.role})`;
+        slot.appendChild(greeting);
+
+        if (user.role === 'seller') {
+            const shopLink = document.createElement('a');
+            shopLink.href = 'seller-dashboard.html';
+            shopLink.textContent = 'My Shop';
+            slot.appendChild(shopLink);
+        }
 
         const logoutLink = document.createElement('a');
         logoutLink.href = '#';
@@ -52,8 +60,6 @@ function renderAuthNav() {
             clearSession();
             window.location.href = 'index.html';
         });
-
-        slot.appendChild(greeting);
         slot.appendChild(logoutLink);
     } else {
         const loginLink = document.createElement('a');
